@@ -117,8 +117,6 @@ body
   padding:10px;
 
   font-size:30px;
-  line-height:1.1;
-
   color:rgb(240, 70, 70);
 }
 
@@ -232,44 +230,79 @@ table
   box-shadow:2px 2px 2px grey;
 }
 
+#image1-logo-image2-div
+{
+  width:100%;
+  min-height:30px;
+  background-color:whitesmoke;
+  margin-bottom:5px;
+
+  box-shadow:2px 2px 2px grey;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:12px;
+
+  padding:10px;
+
+  flex-wrap:nowrap;
+}
+
+#image1-div,
+#image2-div
+{
+  flex:0 1 100px;
+}
+
+#image1-div img,
+#image2-div img
+{
+  width:100%;
+  max-width:100px;
+  min-width:45px;
+  height:auto;
+}
+
+#logo-div
+{
+  flex:1 1 auto;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  padding:5px;
+
+  color:rgb(240, 70, 70);
+
+  line-height:1.1;
+}
+
 /* MOBILE */
 
 @media (max-width:768px)
 {
-  #image1-logo-image2-div
-  {
-    flex-direction:column;
-    gap:12px;
-    padding:15px 8px;
-  }
-
   #logo-div
   {
-    font-size:16px;
-    line-height:1.15;
-    padding:5px;
-  }
-
-  #logo-div font[size="6"]
-  {
-    font-size:42px;
-  }
-
-  #logo-div font[size="5"]
-  {
-    font-size:28px;
+    font-size:18px;
   }
 
   #image1-div,
   #image2-div
   {
-    width:90px;
+    flex:0 1 70px;
   }
 
   #image1-div img,
   #image2-div img
   {
-    border-radius:14px;
+    max-width:70px;
+    min-width:40px;
   }
 
   th
@@ -301,12 +334,15 @@ table
 <div id="logo-div">
 
 <div>
-<FONT size=6>Sea Eagle Coins</FONT>
+<div style="font-size:clamp(28px, 5vw, 56px);">
+Sea Eagle Coins
+</div>
 </div>
 
 <div>
-<FONT size=5>&</FONT>
-<FONT size=6>Antiquities</FONT>
+<div style="font-size:clamp(22px, 4vw, 48px);">
+& Antiquities
+</div>
 </div>
 
 </div>
