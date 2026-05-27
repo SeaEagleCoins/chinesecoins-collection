@@ -249,6 +249,57 @@
           border-radius: 2px;
           box-shadow: 2px 2px 2px lightgray;
       }
+
+        /* ===== Mobile layout optimisation ===== */
+        @media (max-width: 768px) {
+        
+            /* Make each coin card use full width */
+            .box{
+                width:100%;
+                max-width:550px;
+                padding:12px;
+            }
+        
+            /* Stack front/back images vertically */
+            .images{
+                flex-direction:column;
+                align-items:center;
+                gap:12px;
+            }
+        
+            /* Make images much larger */
+            .images img{
+                width:92%;
+                max-width:420px;
+                height:auto;
+                border-radius:16px;
+            }
+        
+            /* Header layout stacks */
+            #logo-div,
+            #nav-div{
+                width:100%;
+                float:none;
+                text-align:center;
+                padding:10px;
+                line-height:1.4;
+            }
+        
+            /* Improve readability */
+            .RefNumber,
+            .ItemName,
+            .Dimension,
+            .Price{
+                font-size:14px;
+            }
+        
+            .Remark1,
+            .Remark2{
+                font-size:13px;
+                line-height:1.5;
+            }
+        
+        }
       
         </style>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 
