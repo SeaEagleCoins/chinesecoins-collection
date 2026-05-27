@@ -150,92 +150,138 @@
       border-color: #aaa;
       }
       
-      #RefNumber-ItemName-div
-          {
-          width: 100%;
-          line-height: 20px;
-          }
-            
-      #Dimension-Price-div
-          {
-          width: 100%;
-          line-height: 20px;
-          }
-      
-      .RefNumber
-       {
-        display: inline;
-        width: 30%;
-        float: left;
-        text-align: left;
-       margin: 8px 0;
-       border: 0;
-       height:1px;
-       background:#eee;
-       font-size: 11px;
-       }
-      
-      .ItemName
-       {
-        display: inline;
-        width: 70%;
-        float: right;
-        text-align: left;
-       margin: 8px 0;
-       border: 0;
-       height:1px;
-       background:#eee;
-       font-size: 11px;
-       }
-      
-      .Dimension
-       {
-        display: inline;
-        width: 70%;
-        float: left;
-        text-align: left;
-       margin: 8px 0;
-       border: 0;
-       height:1px;
-       background:#eee;
-       font-size: 11px;
-       }
-      
-      .Price
-       {
-        display: inline;
-        width: 30%;
-        float: right;
-        text-align: right;
-       margin: 8px 0;
-       border: 0;
-       height:1px;
-       background:#eee;
-       font-size: 11px;
-       }
-      
-      .Remark1
-       {
-       margin: 12px 0;
-       border: 0;
-       height:1px;
-       background:#eee;
-       font-size: 11px;
-       line-height: 20px;
-       margin-bottom: 17px;
-       }
-      
-      .Remark2
-       {
-       margin: 12px 0;
-       border: 0;
-       height:1px;
-       background:#eee;
-       font-size: 11px;
-       line-height: 20px;
-       margin-bottom: 20px;
-       }
-      
+        #RefNumber-ItemName-div,
+        #Dimension-Price-div{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        
+            width:100%;
+            gap:12px;
+        
+            padding:8px 0;
+            border-bottom:1px solid #eee;
+        
+            clear:both;
+        }
+        
+        .RefNumber,
+        .ItemName,
+        .Dimension,
+        .Price{
+            float:none;
+            display:block;
+        
+            width:auto;
+            height:auto;
+        
+            margin:0;
+        
+            background:none;
+            border:0;
+        
+            font-size:13px;
+            line-height:1.5;
+        }
+        
+        .ItemName,
+        .Dimension{
+            flex:1;
+        }
+        
+        .Price{
+            text-align:right;
+            white-space:nowrap;
+        }
+        
+        /* ===== Remarks ===== */
+        
+        .Remark1,
+        .Remark2{
+            clear:both;
+        
+            height:auto;
+        
+            margin-top:10px;
+            margin-bottom:10px;
+        
+            padding:0;
+        
+            background:none;
+            border:0;
+        
+            font-size:13px;
+            line-height:1.6;
+        
+            overflow-wrap:break-word;
+        }
+        
+        /* ===== Mobile layout ===== */
+        
+        @media (max-width:768px){
+        
+            .box{
+                width:100%;
+                max-width:100%;
+        
+                padding:14px;
+        
+                overflow:hidden;
+            }
+        
+            .images{
+                display:flex;
+                flex-direction:column;
+        
+                align-items:center;
+        
+                gap:14px;
+        
+                margin-bottom:14px;
+            }
+        
+            .images img{
+                width:100%;
+        
+                max-width:320px;
+        
+                height:auto;
+        
+                display:block;
+        
+                border-radius:16px;
+            }
+        
+            #logo-div,
+            #nav-div{
+                width:100%;
+        
+                float:none;
+        
+                text-align:center;
+        
+                padding:10px;
+        
+                line-height:1.4;
+            }
+        
+            #RefNumber-ItemName-div,
+            #Dimension-Price-div{
+                flex-wrap:wrap;
+            }
+        
+            .Price{
+                width:100%;
+                text-align:left;
+                margin-top:4px;
+            }
+        
+            .Remark1,
+            .Remark2{
+                font-size:14px;
+            }
+        
+        }
       #footer-div
       {
           width:100%;
