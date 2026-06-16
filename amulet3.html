@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Simple Image Swiper | Manual Navigation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #e2e8f0 0%, #cbd5e1 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: system-ui, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            padding: 20px;
+        }
+
+        /* main card container */
+        .swiper-card {
+            max-width: 1000px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        /* image area */
+        .swiper-viewport {
+            position: relative;
+            background: #0a0a1a;
+            overflow: hidden;
+            touch-action: pan-y pinch-zoom;
+        }
+
+        .swiper-slides {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            cursor: grab;
+        }
+
+        .swiper-slides:active {
+            cursor: grabbing;
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            user-select: none;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+            background: #1e293b;
+        }
+
+        /* navigation bar (manual buttons) */
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            padding: 18px 24px;
+            background: #ffffff;
+            border-top: 1px solid #eef2f8;
+        }
+
+        .nav-btn {
+            background: #f1f5f9;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 60px;
+            font-size: 28px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            color: #1e293b;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            font-family: monospace;
+        }
+
+        .nav-btn:hover {
+            background: #e2e8f0;
+            transform: scale(1.05);
+        }
+
+        .nav-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* indicator dots inside nav bar */
+        .dots-indicator {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #cbd5e1;
+            border-radius: 20px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            width: 28px;
+            background: #0f172a;
+        }
+
+        /* counter badge */
+        .counter-badge {
+            background: #f8fafc;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: monospace;
+            color: #334155;
+            letter-spacing: 0.5px;
+        }
+
+        /* caption area */
+        .image-caption {
+            text-align: center;
+            padding: 14px 20px;
+            background: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2c3e4e;
+            border-top: 1px solid #ecf3fa;
+        }
+
+        /* responsive */
+        @media (max-width: 600px) {
+            .nav-bar {
+                gap: 16px;
+                padding: 14px 16px;
+                flex-wrap: wrap;
+            }
+            .nav-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 24px;
+            }
+            .counter-badge {
+                font-size: 0.7rem;
+                padding: 4px 12px;
+            }
+            .image-caption {
+                font-size: 0.8rem;
+                padding: 10px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="swiper-card">
+    <!-- Image swiper viewport -->
+    <div class="swiper-viewport">
+        <div class="swiper-slides" id="swiperSlides">
+            <!-- Slides will be injected -->
+        </div>
+    </div>
+
+    <!-- Caption area -->
+    <div class="image-caption" id="captionArea">
+        🖼️ Swipe or use buttons
+    </div>
+
+    <!-- Manual navigation bar -->
+    <div class="nav-bar">
+        <button class="nav-btn" id="prevBtn" aria-label="Previous">←</button>
+        
+        <div class="dots-indicator" id="dotsIndicator">
+            <!-- dynamic dots -->
+        </div>
+        
+        <button class="nav-btn" id="nextBtn" aria-label="Next">→</button>
+        
+        <div class="counter-badge" id="counterDisplay">1 / 5</div>
+    </div>
+</div>
+
+<script>
+    (function(){
+        // ---------- SIMPLE IMAGE GALLERY ----------
+        const images = [
+            {
+                src: "wangmang bu quan s/wang mang bu quan WM15a1 Os.JPG",
+                alt: "wang mang bu quan",
+                caption: "Bu Quan WM15a1"
+            },
+            {
+                src: "wangmang bu quan s/wang mang bu quan WM15a2 Os.JPG",
+                alt: "wang mang bu quan",
+                caption: "Bu Quan WM15a2"
+            },
+            {
+                src: "wangmang bu quan s/wang mang bu quan WM15a3 Os.JPG",
+                alt: "wang mang bu quan",
+                caption: "Bu Quan WM15a3"
+            },
+            {
+                src: "wangmang bu quan s/wang mang bu quan WM15a4 Os.JPG",
+                alt: "wang mang bu quan",
+                caption: "Bu Quan WM15a4"
+            },
+            {
+                src: "wangmang bu quan s/wang mang bu quan WM15a5 Os.JPG",
+                alt: "wang mang bu quan",
+                caption: "Bu Quan WM15a5"
+            }
+        ];
+
+        // DOM elements
+        const slidesContainer = document.getElementById('swiperSlides');
+        const dotsIndicator = document.getElementById('dotsIndicator');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const counterDisplay = document.getElementById('counterDisplay');
+        const captionArea = document.getElementById('captionArea');
+        
+        let currentIndex = 0;
+        const totalSlides = images.length;
+        
+        // Touch events for swipe
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let isSwiping = false;
+        
+        // ---------- BUILD SWIPER STRUCTURE ----------
+        function buildSwiper() {
+            // 1. Create slide elements
+            slidesContainer.innerHTML = '';
+            images.forEach((img, idx) => {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = 'slide';
+                const imgElement = document.createElement('img');
+                imgElement.src = img.src;
+                imgElement.alt = img.alt;
+                imgElement.loading = idx === 0 ? 'eager' : 'lazy';
+                slideDiv.appendChild(imgElement);
+                slidesContainer.appendChild(slideDiv);
+            });
+            
+            // 2. Create dots inside navigation bar
+            dotsIndicator.innerHTML = '';
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                dot.dataset.index = i;
+                dot.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    goToSlide(i);
+                });
+                dotsIndicator.appendChild(dot);
+            }
+            
+            // 3. set initial UI state
+            updateUI();
+        }
+        
+        // Update slider position, active dot, caption and counter
+        function updateUI() {
+            if (!slidesContainer) return;
+            const offset = -currentIndex * 100;
+            slidesContainer.style.transform = translateX(${offset}%);
+            
+            // Update dots active state
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, idx) => {
+                if (idx === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+            
+            // Update counter text
+            if (counterDisplay) {
+                counterDisplay.textContent = ${currentIndex + 1} / ${totalSlides};
+            }
+            
+            // Update caption
+            if (captionArea && images[currentIndex]) {
+                captionArea.textContent = images[currentIndex].caption;
+            }
+        }
+        
+        // Navigation methods (manual)
+        function goToSlide(index) {
+            // Loop around edges
+            if (index < 0) index = totalSlides - 1;
+            if (index >= totalSlides) index = 0;
+            currentIndex = index;
+            updateUI();
+        }
+        
+        function nextSlide() {
+            goToSlide(currentIndex + 1);
+        }
+        
+        function prevSlide() {
+            goToSlide(currentIndex - 1);
+        }
+        
+        // ---------- EVENT HANDLERS (MANUAL NAVIGATION) ----------
+        function bindManualControls() {
+            // Prev button
+            if (prevBtn) {
+                const newPrev = prevBtn.cloneNode(true);
+                prevBtn.parentNode.replaceChild(newPrev, prevBtn);
+                newPrev.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    prevSlide();
+                });
+            }
+            
+            // Next button
+            if (nextBtn) {
+                const newNext = nextBtn.cloneNode(true);
+                nextBtn.parentNode.replaceChild(newNext, nextBtn);
+                newNext.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    nextSlide();
+                });
+            }
+        }
+        
+        // ---------- TOUCH SWIPE (simple, manual) ----------
+        function initSwipeGestures() {
+            const viewport = document.querySelector('.swiper-viewport');
+            if (!viewport) return;
+            
+            viewport.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                isSwiping = true;
+                // optional: small style feedback
+                slidesContainer.style.transition = 'transform 0.3s ease-out';
+            }, { passive: true });
+            
+            viewport.addEventListener('touchmove', (e) => {
+                if (!isSwiping) return;
+                // optional: live shift effect (adds drag feeling, but we keep simple)
+                const deltaX = e.changedTouches[0].screenX - touchStartX;
+                if (Math.abs(deltaX) > 20) {
+                    // prevent vertical scroll while horizontal swipe
+                    e.preventDefault();
+                }
+            }, { passive: false });
+            
+            viewport.addEventListener('touchend', (e) => {
+                if (!isSwiping) {
+                    return;
+                }
+                touchEndX = e.changedTouches[0].screenX;
+                const deltaX = touchEndX - touchStartX;
+                const swipeThreshold = 45;
+                
+                if (Math.abs(deltaX) > swipeThreshold) {
+                    if (deltaX > 0) {
+                        // swipe right → previous image
+                        prevSlide();
+                    } else {
+                        // swipe left → next image
+                        nextSlide();
+                    }
+                }
+                // reset transition to default after swipe
+                slidesContainer.style.transition = 'transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1)';
+                isSwiping = false;
+                touchStartX = 0;
+                touchEndX = 0;
+            }, { passive: true });
+            
+            // prevent mouse drag weirdness on desktop (just for better UX)
+            viewport.addEventListener('dragstart', (e) => {
+                e.preventDefault();
+                return false;
+            });
+        }
+        
+        // ---------- KEYBOARD SUPPORT (manual arrows) ----------
+        function initKeyboardNav() {
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    prevSlide();
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    nextSlide();
+                }
+            });
+        }
+        
+        // ---------- RESIZE HANDLER (fix transform) ----------
+        let resizeTimer;
+        function handleResize() {
+            if (resizeTimer) clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (slidesContainer) {
+                    const offset = -currentIndex * 100;
+                    slidesContainer.style.transform = translateX(${offset}%);
+                }
+            }, 100);
+        }
+        
+        // ---------- INITIALIZE ----------
+        function init() {
+            buildSwiper();
+            bindManualControls();    // previous/next buttons
+            initSwipeGestures();     // touch swipe for mobile
+            initKeyboardNav();       // left/right arrows
+            window.addEventListener('resize', handleResize);
+            // set initial transition property
+            if (slidesContainer) {
+                slidesContainer.style.transition = 'transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1)';
+                slidesContainer.style.cursor = 'grab';
+            }
+        }
+        
+        init();
+        
+        // small helper: expose public API if needed (optional)
+        window.imageSwiper = {
+            next: () => nextSlide(),
+            prev: () => prevSlide(),
+            goTo: (idx) => goToSlide(idx),
+            getIndex: () => currentIndex
+        };
+    })();
+</script>
+</body>
+</html>
