@@ -11,14 +11,13 @@ what is an amulet, difference between charm and amulet, qing, dynasty, dynasties
 chinese amulets, antiques, antiquities, talisman, coin, coin amulet, coin charm, bronze, copper, china, 
 yansheng, yasheng, hua qian, lucky coin, open work">
 
-<TITLE>Chinese amulet charm sales catalog - Pg 1</TITLE>
+<TITLE>Chinese amulet charm sales catalog - Pg 4</TITLE>
 
 <style type="text/css">
-
           *
           {
           margin:0px;
-          padding:0px;
+          padding:0p;
           box-sizing:border-box;
           }
       
@@ -100,23 +99,25 @@ yansheng, yasheng, hua qian, lucky coin, open work">
         }
       
         .container
-         {
-           display:flex;
-           gap:10px;
-           flex-wrap: wrap;
-           justify-content: center;
-         }
+        {
+            display:flex;
+            gap:10px;
+            flex-wrap: wrap;
+            justify-content: center; 
+            width:100%;
+            margin:10px auto;
+        }
         
         .box
-         {
-           width:600px;
-           max-width:45%;
-           margin:20px auto;
-           background-color:whitesmoke;
-           border-radius:12px;
-           padding:10px;
-           box-shadow:0 2px 8px lightgrey;
-         }
+        {
+            background-color: white;
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 0 2px 8px lightgrey;
+            width: fit-content;
+            transition: transform 0.2s;
+            margin-bottom: 10px;
+        }
         
         .box:hover
         {
@@ -133,8 +134,9 @@ yansheng, yasheng, hua qian, lucky coin, open work">
         
         .images img
         {
-            width: min(42vw, 280px);
+            width: min(42vw, 190px);
             height: auto;
+        
             border-radius: 20px;
             object-fit: cover;
             transition: transform 0.2s;
@@ -146,129 +148,92 @@ yansheng, yasheng, hua qian, lucky coin, open work">
       border-color: #aaa;
       }
       
-        #RefNumber-ItemName-div,
-        #Dimension-Price-div{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            width:100%;
-            gap:12px;
-            padding:8px 0;
-            border-bottom:1px solid #eee;
-            clear:both;
-        }
-        
-        .RefNumber,
-        .ItemName,
-        .Dimension,
-        .Price{
-            float:none;
-            display:block;
-        
-            width:auto;
-            height:auto;
-        
-            margin:0;
-        
-            background:none;
-            border:0;
-        
-            font-size:13px;
-            line-height:1.5;
-        }
-        
-        .ItemName,
-        .Dimension{
-            flex:1;
-        }
-        
-        .Price{
-            text-align:right;
-            white-space:nowrap;
-        }
-        
-        /* ===== Remarks ===== */
-        
-        .Remark1,
-        .Remark2{
-            clear:both;
-        
-            height:auto;
-        
-            margin-top:10px;
-            margin-bottom:10px;
-        
-            padding:0;
-        
-            background:none;
-            border:0;
-        
-            font-size:13px;
-            line-height:1.6;
-        
-            overflow-wrap:break-word;
-        }
-        
-        /* ===== Mobile layout ===== */
-        
-        @media (max-width:768px){
-        
-            .box{
-                width:100%;
-                max-width:100%;
-        
-                padding:14px;
-        
-                overflow:hidden;
-            }
-        
-            .images{
-                display:flex;
-                flex-direction:column;
-        
-                align-items:center;
-        
-                gap:14px;
-        
-                margin-bottom:14px;
-            }
-        
-            .images img{
-                width:100%;
-        
-                max-width:320px;
-        
-                height:auto;
-        
-                display:block;
-        
-                border-radius:16px;
-            }
-        
-            #logo-div,
-            #nav-div{
-                width:100%;
-        
-                float:none;
-        
-                text-align:center;
-        
-                padding:10px;
-        
-                line-height:1.4;
-            }
-        
-            #RefNumber-ItemName-div,
-            #Dimension-Price-div{
-                flex-wrap:wrap;
-            }
-        
-            .Remark1,
-            .Remark2{
-                font-size:14px;
-            }
-        
-        }
+      #RefNumber-ItemName-div
+          {
+          width: 100%;
+          line-height: 20px;
+          }
+            
+      #Dimension-Price-div
+          {
+          width: 100%;
+          line-height: 20px;
+          }
+      
+      .RefNumber
+       {
+        display: inline;
+        width: 30%;
+        float: left;
+        text-align: left;
+       margin: 8px 0;
+       border: 0;
+       height:1px;
+       background:#eee;
+       font-size: 11px;
+       }
+      
+      .ItemName
+       {
+        display: inline;
+        width: 70%;
+        float: right;
+        text-align: left;
+       margin: 8px 0;
+       border: 0;
+       height:1px;
+       background:#eee;
+       font-size: 11px;
+       }
+      
+      .Dimension
+       {
+        display: inline;
+        width: 70%;
+        float: left;
+        text-align: left;
+       margin: 8px 0;
+       border: 0;
+       height:1px;
+       background:#eee;
+       font-size: 11px;
+       }
+      
+      .Price
+       {
+        display: inline;
+        width: 30%;
+        float: right;
+        text-align: right;
+       margin: 8px 0;
+       border: 0;
+       height:1px;
+       background:#eee;
+       font-size: 11px;
+       }
+      
+      .Remark1
+       {
+       margin: 12px 0;
+       border: 0;
+       height:1px;
+       background:#eee;
+       font-size: 11px;
+       line-height: 20px;
+       margin-bottom: 17px;
+       }
+      
+      .Remark2
+       {
+       margin: 12px 0;
+       border: 0;
+       height:1px;
+       background:#eee;
+       font-size: 11px;
+       line-height: 20px;
+       margin-bottom: 20px;
+       }
+      
       #footer-div
       {
           width:100%;
@@ -282,57 +247,6 @@ yansheng, yasheng, hua qian, lucky coin, open work">
           border-radius: 2px;
           box-shadow: 2px 2px 2px lightgray;
       }
-
-        /* ===== Mobile layout optimisation ===== */
-        @media (max-width: 768px) {
-        
-            /* Make each coin card use full width */
-            .box{
-                width:100%;
-                max-width:650px;
-                padding:12px;
-            }
-        
-            /* Stack front/back images vertically */
-            .images{
-                flex-direction:column;
-                align-items:center;
-                gap:12px;
-            }
-        
-            /* Make images much larger */
-            .images img{
-                width:100%;
-                max-width:600px;
-                height:auto;
-                border-radius:16px;
-            }
-        
-            /* Header layout stacks */
-            #logo-div,
-            #nav-div{
-                width:100%;
-                float:none;
-                text-align:center;
-                padding:10px;
-                line-height:1.4;
-            }
-        
-            /* Improve readability */
-            .RefNumber,
-            .ItemName,
-            .Dimension,
-            .Price{
-                font-size:14px;
-            }
-        
-            .Remark1,
-            .Remark2{
-                font-size:13px;
-                line-height:1.5;
-            }
-        
-        }
       
         </style>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 
@@ -396,14 +310,14 @@ yansheng, yasheng, hua qian, lucky coin, open work">
   
 <div class="box">
     <div class="images">
-      <A HREF="amulet2/amulet AC201.1 O.jpg"TARGET=_blank>
-      <IMG SRC="amulet2/amulet AC201.1 O.jpg"></A>
-      <A HREF="amulet2/amulet AC201.1 R.jpg"TARGET=_blank>
-      <IMG SRC="amulet2/amulet AC201.1 R.jpg"></A> 
+      <A HREF="amulet4/amulet AC32 O.jpg"TARGET=_blank>
+      <IMG SRC="amulet4/amulet AC32 O.jpg"></A>
+      <A HREF="amulet4/amulet AC32 R.jpg"TARGET=_blank>
+      <IMG SRC="amulet4/amulet AC32 R.jpg"></A> 
     </div>
   <div id="RefNumber-ItemName-div" class="clearfix">
       <div class="RefNumber">
-        AC201.1
+        AC32
       </div>
       <div class="ItemName">
         Silver Amulet Charm
@@ -427,15 +341,15 @@ yansheng, yasheng, hua qian, lucky coin, open work">
 
   <div class="box">
     <div class="images">
-      <A HREF="amulet2/amulet AC202.1 O.JPG"TARGET=_blank>
-      <IMG SRC="amulet2/amulet AC202.1 O.JPG"></A>
-      <A HREF="amulet2/amulet AC202.1 R.JPG"TARGET=_blank>
-      <IMG SRC="amulet2/amulet AC202.1 R.JPG"></A> 
+      <A HREF="amulet4/amulet AC35 O.JPG"TARGET=_blank>
+      <IMG SRC="amulet4/amulet AC35 O.JPG"></A>
+      <A HREF="amulet4/amulet AC35 R.JPG"TARGET=_blank>
+      <IMG SRC="amulet4/amulet AC35 R.JPG"></A> 
     </div>
 
   <div id="RefNumber-ItemName-div" class="clearfix">
       <div class="RefNumber">
-        AC 202.1
+        AC35
       </div>
       <div class="ItemName">
         Silver Amulet Charm
@@ -464,15 +378,15 @@ yansheng, yasheng, hua qian, lucky coin, open work">
   
  <div class="box">
     <div class="images">
-      <A HREF="amulet2/amulet AC203.1 O.JPG"TARGET=_blank>
-      <IMG SRC="amulet2/amulet AC203.1 O.JPG"></A>
-      <A HREF="amulet2/amulet AC203.1 R.JPG"TARGET=_blank>
-      <IMG SRC="amulet2/amulet AC203.1 R.JPG"></A> 
+      <A HREF="amulet4/amulet AC36 O.JPG"TARGET=_blank>
+      <IMG SRC="amulet4/amulet AC36 O.JPG"></A>
+      <A HREF="amulet4/amulet AC36 R.JPG"TARGET=_blank>
+      <IMG SRC="amulet4/amulet AC36 R.JPG"></A> 
     </div>
 
   <div id="RefNumber-ItemName-div" class="clearfix">
       <div class="RefNumber">
-      AC203.1
+      AC36
       </div>
       <div class="ItemName">
       Silver Amulet
@@ -497,15 +411,15 @@ yansheng, yasheng, hua qian, lucky coin, open work">
   
  <div class="box">
     <div class="images">
-      <A HREF="amulet2/amulet AC204.1 57mm O.JPG"TARGET=_blank>
-      <IMG SRC="amulet2/amulet AC204.1 57mm O.JPG"></A>
-      <A HREF="amulet2/amulet AC204.1 57mm R.JPG"TARGET=_blank>
-      <IMG SRC="amulet2/amulet AC204.1 57mm R.JPG"></A> 
+      <A HREF="amulet4/amulet AC39 O.JPG"TARGET=_blank>
+      <IMG SRC="amulet4/amulet AC39 O.JPG"></A>
+      <A HREF="amulet4/amulet AC39 R.JPG"TARGET=_blank>
+      <IMG SRC="amulet4/amulet AC39 R.JPG"></A> 
     </div>
 
   <div id="RefNumber-ItemName-div" class="clearfix">
       <div class="RefNumber">
-      AC204.1
+      AC39
       </div>
       <div class="ItemName">
       Silver Amulet
